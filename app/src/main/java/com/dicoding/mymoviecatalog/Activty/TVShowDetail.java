@@ -1,5 +1,6 @@
 package com.dicoding.mymoviecatalog.Activty;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.dicoding.mymoviecatalog.Data.TVShowsData;
 import com.dicoding.mymoviecatalog.MainActivity;
@@ -35,10 +37,20 @@ public class TVShowDetail extends AppCompatActivity {
     TVShowsData tvshows = new TVShowsData();
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tvshow_detail);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
+
 
         //DATA YANG AKAN DISET KE LAYOUT
         //title
@@ -47,7 +59,6 @@ public class TVShowDetail extends AppCompatActivity {
         youtubeVideo = findViewById(R.id.youtube);
 
         imgPoster = findViewById(R.id.image_poster);
-        Back = findViewById(R.id.back);
         txtGenre = findViewById(R.id.genre);
         txtRunTime = findViewById(R.id.run_time);
         txtYear = findViewById(R.id.year);
@@ -113,16 +124,12 @@ public class TVShowDetail extends AppCompatActivity {
         String overview = tvshows.getOverview();
         txtOverview.setText(overview);
 
-        Back.setOnClickListener(new View.OnClickListener() {
+    }
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TVShowDetail.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 
     private void muatVideo(String code_youtube) {

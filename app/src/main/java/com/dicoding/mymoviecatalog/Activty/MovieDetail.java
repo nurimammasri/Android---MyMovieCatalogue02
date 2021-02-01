@@ -1,9 +1,7 @@
 package com.dicoding.mymoviecatalog.Activty;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -12,17 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.dicoding.mymoviecatalog.Data.MoviesData;
-import com.dicoding.mymoviecatalog.MainActivity;
 import com.dicoding.mymoviecatalog.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 public class MovieDetail extends AppCompatActivity {
     public static final String EXTRA_MOVIE = "extra-movie";
-
-    //
-
 
     WebView youtubeVideo;
     CollapsingToolbarLayout collapsingToolbar;
@@ -30,7 +25,7 @@ public class MovieDetail extends AppCompatActivity {
             txtTopBilledCast, txtRelease, txtOriginalLanguage,
             txtRunTime, txtBudget, txtRevenue, txtGenre;
 
-    ImageView imgPoster, Back;
+    ImageView imgPoster;
 
     MoviesData movie = new MoviesData();
 
@@ -39,6 +34,14 @@ public class MovieDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
+
         //DATA YANG AKAN DISET KE LAYOUT
         //title
         collapsingToolbar = findViewById(R.id.collapsing_toolbar);
@@ -46,7 +49,6 @@ public class MovieDetail extends AppCompatActivity {
         youtubeVideo = findViewById(R.id.youtube);
 
         imgPoster = findViewById(R.id.image_poster);
-        Back = findViewById(R.id.back);
         txtGenre = findViewById(R.id.genre);
         txtRunTime = findViewById(R.id.run_time);
         txtYear = findViewById(R.id.year);
@@ -119,16 +121,12 @@ public class MovieDetail extends AppCompatActivity {
         String overview = movie.getOverview();
         txtOverview.setText(overview);
 
-        Back.setOnClickListener(new View.OnClickListener() {
+    }
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MovieDetail.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 
     private void muatVideo(String code_youtube) {
