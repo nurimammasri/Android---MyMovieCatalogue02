@@ -34,9 +34,7 @@
                 android:id="@+id/youtube"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
-                android:layout_weight="1">
-
-            </WebView>
+                android:layout_weight="1"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

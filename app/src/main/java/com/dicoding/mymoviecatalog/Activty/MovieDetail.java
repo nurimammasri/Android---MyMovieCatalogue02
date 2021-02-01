@@ -1,5 +1,6 @@
 package com.dicoding.mymoviecatalog.Activty;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
@@ -29,6 +30,7 @@ public class MovieDetail extends AppCompatActivity {
 
     MoviesData movie = new MoviesData();
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
