@@ -17,7 +17,8 @@
         <activity
             android:name="com.dicoding.mymoviecatalog.Activty.MovieDetail"
             android:theme="@style/AppThemeDetail" />
-        <activity android:name="com.dicoding.mymoviecatalog.MainActivity">
+        <activity android:name="com.dicoding.mymoviecatalog.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
